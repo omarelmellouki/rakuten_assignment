@@ -15,7 +15,10 @@ So in order for the scripts to run *train.py* must be run first.
 
 ## Launch a training 
 
-Run a training using ```bash python train.py. ```
+Run a training using 
+```bash
+ python train.py. 
+ ```
 Use *--max_epoch 2* to get a quick result and be able to run the rest of the commands
 
 * --data_dir : Data containing raw images  
