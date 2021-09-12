@@ -15,7 +15,6 @@ from utils.utils import to_original_index
 
 
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
-IMAGE_SIZE = (224, 224)
 UPLOAD_FOLDER = 'data/images'
 
 
@@ -36,8 +35,8 @@ def allowed_file(filename):
 def predict(file):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = mobilenet_v2()
-    model.classifier[1] = nn.Linear(1280, 34)
     checkpoint = torch.load(args.checkpoint)
+    model.classifier[1] = nn.Linear(1280, list(checkpoint['model_state_dict']['classifier.1.bias'].shape)[0])
     model.load_state_dict(checkpoint['model_state_dict'])
     model.to(device)
     model.eval()

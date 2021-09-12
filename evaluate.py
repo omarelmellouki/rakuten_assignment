@@ -44,12 +44,14 @@ def main():
 
 	# We need to adapt the last layer of the classifier head 
 	# For the right number of classes in the dataset 
-	model.classifier[1] = nn.Linear(1280, 34)
+
 
 	# We load the checkpoint we want to use for the prediction
 	logger.info('==> Loading the desired checkpoint for inference')
 	checkpoint = torch.load(args.checkpoint)
+	model.classifier[1] = nn.Linear(1280, list(checkpoint['model_state_dict']['classifier.1.bias'].shape)[0])
 	model.load_state_dict(checkpoint['model_state_dict'])
+	
 	model.to(device)
 	model.eval()
 

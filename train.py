@@ -94,8 +94,6 @@ def main():
 	for i,cl in enumerate(classes):
 		cl_dict[cl] = i
 
-	print(cl_dict)
-
 	# Build the dataloaders
 	train_data = RakutenCatalogueLoader(train_csv, args.data_dir, transform = train_transform)
 	logger.info('==> {} training samples found in the training set'.format(len(train_data)))
@@ -210,7 +208,7 @@ def main():
             	'iterations':iterations,
             	'model_state_dict': model.state_dict(),
             	'optimizer_state_dict': optimizer.state_dict(),
-            	'validation_accuray': acc.item()/len(val_loader),
+            	'validation_accuracy': acc.item()/len(val_loader),
             }, os.path.join(args.checkpoint_dir, 'model_epoch_'+str(epoch+1)+'.pt'))
 
 
