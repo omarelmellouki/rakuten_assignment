@@ -42,10 +42,9 @@ def main():
 	# Define the model 
 	model = mobilenet_v2()
 
+
 	# We need to adapt the last layer of the classifier head 
 	# For the right number of classes in the dataset 
-
-
 	# We load the checkpoint we want to use for the prediction
 	logger.info('==> Loading the desired checkpoint for inference')
 	checkpoint = torch.load(args.checkpoint)
@@ -58,24 +57,28 @@ def main():
 	val_transform_list = [ToTensor()]
 	val_transform = Compose(val_transform_list)
 
+	# Test loader 
 	test_data = RakutenCatalogueLoader(args.test_file, 'data/images', transform = val_transform)
 	logger.info('==> {} testing samples found in the testing set'.format(len(test_data)))
 
-	# Validation loader
+	# Test loader
 	test_loader = DataLoader(test_data, batch_size=1,
                         shuffle=False, num_workers=args.num_workers)
 
 
 	logger.info('==> Testing the model')
-	model.eval()
+
 	acc = 0
 	for i, data in enumerate(test_loader):
 
+		# Inputs and GT
 		image, target = data['image'], data['target']
 
+		# Move them to gpu 
 		image = image.to(device)
 		target = target.to(device)
 
+		# Predict
 		pred_target = model(image)
 
 		y_pred_softmax = torch.softmax(pred_target, dim = 1)
