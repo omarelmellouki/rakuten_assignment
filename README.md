@@ -11,7 +11,7 @@ pip install -r requirements.txt
 ## To be noted 
 
 There are more images in the image folder than there are in the csv file, so I had to clean it up. The clean up process, as well as the train, val, split process is all done before the training. 
-So in order for the scripts to run *train.py* must be run first.
+So in order for the scripts to run *train.py* must be run first. A pretrained model is also provided.
 
 ## Launch a training 
 
