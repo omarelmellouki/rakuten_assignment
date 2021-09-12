@@ -94,6 +94,8 @@ def main():
 	for i,cl in enumerate(classes):
 		cl_dict[cl] = i
 
+	print(cl_dict)
+
 	# Build the dataloaders
 	train_data = RakutenCatalogueLoader(train_csv, args.data_dir, transform = train_transform)
 	logger.info('==> {} training samples found in the training set'.format(len(train_data)))
@@ -135,7 +137,7 @@ def main():
 
 		start_epoch = 0
 		iterations = 0
-		device = torch.device('cuda:0')
+		device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 		model.to(device)
 		# Training the model 
 		logger.info('==> Started Training')
