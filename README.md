@@ -3,7 +3,7 @@ My submission to the coding test from Rakuten Paris
 
 ## Prerequisists
 
-Start by install the required packages by running 
+Clone the repo and start by install the required packages by running 
 ```bash
 pip install -r requirements.txt
 ```
