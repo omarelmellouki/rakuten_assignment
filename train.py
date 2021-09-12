@@ -137,7 +137,6 @@ def main():
 
 		start_epoch = 0
 		iterations = 0
-		device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 		model.to(device)
 		# Training the model 
 		logger.info('==> Started Training')
